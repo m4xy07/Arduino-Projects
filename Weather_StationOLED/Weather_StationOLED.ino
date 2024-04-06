@@ -7,7 +7,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <WiFiS3.h>
-#include <HTTPClient.h>
+#include <ArduinoHttpClient.h>
+#include "secret.h"
 
 #define DHTTYPE DHT22
 
@@ -37,6 +38,8 @@ float Temp_Fahrenheit;
 float hic;
 int rainSensorValue;
 
+const char* ssid = SECRET_SSID;
+const char* password = SECRET_PASS;
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -375,6 +378,14 @@ void setup() {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
+
+   WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("Connecting to WiFi..");
+  }
+  Serial.println("Connected to the WiFi network");
+
   display.display();
   delay(2000); // Pause for 2 seconds
 
