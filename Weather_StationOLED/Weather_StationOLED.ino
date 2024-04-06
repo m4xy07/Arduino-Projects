@@ -23,6 +23,7 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 unsigned long delayTime = 25000;
+auto timeZoneOffsetHours = 5.5;
 
 //int buzzerpin = 8;
 int DHTPin = 2;
@@ -298,16 +299,14 @@ WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 NTPClient timeClient(Udp);
 
 void printWifiStatus() {
-  // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
 
-  // print your board's IP address:
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
 
-  // print the received signal strength:
+  //signal strength:
   long rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
@@ -315,30 +314,25 @@ void printWifiStatus() {
 }
 
 void connectToWiFi(){
-  // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
-    Serial.println("Communication with WiFi module failed!");
+    Serial.println("Warning: Communication with WiFi module failed!");
     // don't continue
     while (true);
   }
 
   String fv = WiFi.firmwareVersion();
   if (fv < WIFI_FIRMWARE_LATEST_VERSION) {
-    Serial.println("Please upgrade the firmware");
+    Serial.println("INFO: Firmware update is available, Please update!");
   }
 
-  // attempt to connect to WiFi network:
   while (wifiStatus != WL_CONNECTED) {
-    Serial.print("Attempting to connect to SSID: ");
+    Serial.print("INFO: Attempting to connect to SSID: ");
     Serial.println(ssid);
-    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     wifiStatus = WiFi.begin(ssid, pass);
-
-    // wait 10 seconds for connection:
     delay(10000);
   }
 
-  Serial.println("Connected to WiFi");
+  Serial.println("INFO: Connected to WiFi");
   printWifiStatus();
 }
 
@@ -442,21 +436,17 @@ void setup() {
 
   connectToWiFi();
   RTC.begin();
-  Serial.println("\nStarting connection to server...");
+  Serial.println("\nINFO: Starting connection to server...");
   timeClient.begin();
   timeClient.update();
 
-  // Get the current date and time from an NTP server and convert
-  // it to UTC +2 by passing the time zone offset in hours.
-  // You may change the time zone offset to your local one.
-  auto timeZoneOffsetHours = 5.5;
+  // Get the current date and time from an NTP server and convert it to unix
   auto unixTime = timeClient.getEpochTime() + (timeZoneOffsetHours * 3600);
   Serial.print("Unix time = ");
   Serial.println(unixTime);
   RTCTime timeToSet = RTCTime(unixTime);
   RTC.setTime(timeToSet);
 
-  // Retrieve the date and time from the RTC and print them
   RTCTime currentTime;
   RTC.getTime(currentTime); 
   Serial.println("The RTC was just set to: " + String(currentTime));
@@ -470,7 +460,7 @@ void setup() {
   Serial.println("Connected to the WiFi network");
  */
   display.display();
-  delay(2000); // Pause for 2 seconds
+  delay(2000); 
 
   //pinMode(buzzerpin, OUTPUT);
   pinMode(sensorPinD, INPUT);
@@ -482,12 +472,12 @@ void setup() {
   dht.begin();
 
 //Initializing our SD Card
-  Serial.print("Initializing SD card...");
+  Serial.print("INFO: Initializing SD card...");
   if (!SD.begin(4)) {
     Serial.println("Warning: Initialization failed!");
     while (1);
   }
-  Serial.println("SD Initialization done.");
+  Serial.println("INFO: SD Initialization done.");
 
   matrix.loadSequence(frames);
   matrix.begin();
@@ -542,8 +532,9 @@ void loop() {
     Serial.println("No Gas Leakage");
   }
   
-  Serial.print(rainSensorValue);
-  Serial.println(F(" Rain "));
+  //Was for debugging the sensor
+/*  Serial.print(rainSensorValue);
+  Serial.println(F(" Rain ")); */
 
   displaySensorData();
   RTCTime currentTime;
