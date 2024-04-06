@@ -6,6 +6,9 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <WiFiS3.h>
+#include <HTTPClient.h>
+
 #define DHTTYPE DHT22
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
