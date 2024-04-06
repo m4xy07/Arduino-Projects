@@ -299,7 +299,15 @@ bool checkForRain() {
   //rainSensorValue = analogRead(rainpin);
   //int rainThreshold = 500;
   //return rainSensorValue > rainThreshold;
-  return rainSensorValue < 1; // Shows 1 if not raining, 0 if raining.
+  if(rainSensorValue < 1)
+  {
+  return 1;
+  }
+  else 
+  {
+    return 0;
+  }
+   // Shows 1 if not raining, 0 if raining.
 }
 
 // Function to read air quality index
@@ -396,6 +404,7 @@ void setup() {
     while (1);
   }
   Serial.println("SD Initialization done.");
+  //myFile = SD.open("test.txt", FILE_WRITE);
 
   display.display();
   delay(2000); // Pause for 2 seconds
