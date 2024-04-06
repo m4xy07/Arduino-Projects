@@ -6,12 +6,12 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <SD.h>
 #include <WiFiS3.h>
 #include <ArduinoHttpClient.h>
 #include "secret.h"
 
 #define DHTTYPE DHT22
-
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
@@ -51,6 +51,10 @@ const char* password = SECRET_PASS;
 #define POOR_COLOR   0xFF0000  // Red
 #define TEXT_INTERESAR_COLOR 0x0000FF // Blue
 
+File myFile;
+Sd2Card card;
+SdVolume volume;
+SdFile root;
 
 ArduinoLEDMatrix matrix;
 
@@ -373,18 +377,25 @@ void displaySensorData() {
 
 void setup() {
   Serial.begin(9600);
-
+  //Initializing our OLED module
   if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    Serial.println(F("SSD1306 allocation failed"));
+    Serial.println(F("Warning: OLED Driver SSD1306 Allocation Failed!"));
     for(;;); // Don't proceed, loop forever
   }
-
+  //Connecting to the WiFi Network
    WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.println("Connecting to WiFi..");
   }
   Serial.println("Connected to the WiFi network");
+//Initializing our SD Card
+  Serial.print("Initializing SD card...");
+  if (!SD.begin(4)) {
+    Serial.println("Warning: Initialization failed!");
+    while (1);
+  }
+  Serial.println("SD Initialization done.");
 
   display.display();
   delay(2000); // Pause for 2 seconds
@@ -424,7 +435,7 @@ void loop() {
   hic = dht.computeHeatIndex(Temperature, Humidity, false);
 
   if (isnan(Humidity) || isnan(Temperature) || isnan(Temp_Fahrenheit)) {
-    Serial.println(F("Unable to find DHT Sensor. Check Connection!"));
+    Serial.println(F("Warning: Unable to find DHT Sensor. Check Connection!"));
     return;
   }
 
