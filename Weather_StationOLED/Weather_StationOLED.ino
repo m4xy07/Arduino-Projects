@@ -297,6 +297,7 @@ const uint32_t frames[][4] = {
 int wifiStatus = WL_IDLE_STATUS;
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 NTPClient timeClient(Udp);
+long rssi = WiFi.RSSI();
 
 void printWifiStatus() {
   Serial.print("SSID: ");
@@ -307,7 +308,6 @@ void printWifiStatus() {
   Serial.println(ip);
 
   //signal strength:
-  long rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
@@ -543,26 +543,30 @@ void loop() {
   myFile = SD.open("Readings.txt", FILE_WRITE);
    if (myFile) {
     // Write timestamp to the file on first line
-    myFile.print(currentTime.getYear(), DEC);
+    myFile.print(currentTime.getDayOfMonth(), DEC);
     myFile.print("-");
     myFile.print(Month2int(currentTime.getMonth()));
     myFile.print("-");
-    myFile.print(currentTime.getDayOfMonth(), DEC);
+    myFile.print(currentTime.getYear(), DEC);
     myFile.print(" ");
     myFile.print(currentTime.getHour(), DEC);
     myFile.print(":");
     myFile.print(currentTime.getMinutes(), DEC);
     myFile.print(":");
-    myFile.println(currentTime.getSeconds(), DEC);
+    myFile.print(currentTime.getSeconds(), DEC);
 
-    myFile.print("Temperature: ");
+    myFile.print(" | Temperature: ");
     myFile.print(Temperature);
     myFile.print(", Humidity: ");
     myFile.print(Humidity);
     myFile.print(", AQI: ");
-    myFile.println(airQualityIndex);
+    myFile.print(airQualityIndex);
     myFile.print(", HI: ");
-    myFile.println(hic);
+    myFile.print(hic);
+    myFile.print(", Raining:");
+    myFile.println(checkForRain() ? "Yes" : "No");
+    myFile.print(", WiFI Strength (dBm): ");
+    myFile.println(rssi);
     myFile.close();
     Serial.println("Data saved to SD card");
   } else {
