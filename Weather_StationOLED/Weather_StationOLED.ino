@@ -1,9 +1,9 @@
 //Uses a 0.96 Yellow-Blue OLED Display Driver IC: SSD1306
-#include <Wire.h>
 #include "Arduino_LED_Matrix.h"
 #include <stdint.h>
 #include "DHT.h"
 #include <SPI.h>
+#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define DHTTYPE DHT22
@@ -17,13 +17,13 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 unsigned long delayTime = 2500;
 
-//int buzzerpin = 7;
+//int buzzerpin = 8;
 int DHTPin = 2;
 int sensorPinA = A0;
 int sensorPinD = 4;
 int sensorDataD;
 int sensorDataA;
-int rainpin = A2;
+int rainpin = 7;
 
 DHT dht(DHTPin, DHTTYPE);
 
@@ -32,6 +32,7 @@ float Humidity;
 float Temperature;
 float Temp_Fahrenheit;
 float hic;
+int rainSensorValue;
 
 
 #define BACKGROUND_COLOR  0x000000  // Black
@@ -284,9 +285,11 @@ const uint32_t frames[][4] = {
 
 
 bool checkForRain() {
-  int rainSensorValue = analogRead(rainpin);
-  int rainThreshold = 500;
-  return rainSensorValue > rainThreshold;
+  rainSensorValue = digitalRead(rainpin);
+  //rainSensorValue = analogRead(rainpin);
+  //int rainThreshold = 500;
+  //return rainSensorValue > rainThreshold;
+  return rainSensorValue < 1; // Shows 1 if not raining, 0 if raining.
 }
 
 // Function to read air quality index
@@ -318,51 +321,45 @@ bool checkForGasLeak() {
 void displaySensorData() {
   display.clearDisplay();
   display.setTextSize(1);
-  display.setTextColor(TEXT_COLOR);
+  display.setTextColor(SSD1306_WHITE);
 
   // Display humidity
   display.setCursor(0, 0);
   display.print("Humidity:");
   display.print(Humidity);
-  display.print("%");
+  display.println("%");
 
   // Display temperature
-  display.setCursor(0, 10);
   display.print("Temp:");
   display.print(Temperature);
   display.print((char)247); // Degree symbol
   display.print("C (");
   display.print(Temp_Fahrenheit);
-  display.print("F)");
+  display.println("F)");
 
   // Display heat index
-  display.setCursor(0, 20);
   display.print("Heat Index:");
   display.print(hic);
   display.print((char)247); // Degree symbol
-  display.print("C");
+  display.println("C");
 
-  // Display rain detection
-  display.setCursor(0, 30);
-  display.print("Raining:");
-  display.print(checkForRain() ? "Yes" : "No");
-
-  // Add spacing
-  display.setCursor(0, 35);
 
   // Air quality section
   display.print("Air Quality:");
   int airQuality = readAirQualityIndex();
   display.print(airQuality);
 
-  // Text color based on air quality (optional)
   if (airQuality <= 200) {
-    display.print(" (Good)");
+    display.println(" Good");
   } else if (airQuality <= 500) {
-    display.print(" (Moderate)");
+    display.println(" Mid");
   } else {
-    display.print(" (Very Poor)");
+    display.println(" Poor");
   }
+
+  // Display rain detection
+  display.print("Raining:");
+  display.println(checkForRain() ? "Yes" : "No");
 
   display.display();
 }
@@ -377,9 +374,6 @@ void setup() {
   }
   display.display();
   delay(2000); // Pause for 2 seconds
-
-  // Clear the buffer
-  display.clearDisplay();
 
   //pinMode(buzzerpin, OUTPUT);
   pinMode(sensorPinD, INPUT);
@@ -441,6 +435,10 @@ void loop() {
   } else {
     Serial.println("No Gas Leakage");
   }
+  
+  Serial.print(rainSensorValue);
+  Serial.println(F(" Rain "));
+
   displaySensorData();
   delay(delayTime);
 }
