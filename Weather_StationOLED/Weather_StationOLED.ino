@@ -297,7 +297,7 @@ const uint32_t frames[][4] = {
 int wifiStatus = WL_IDLE_STATUS;
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 NTPClient timeClient(Udp);
-long rssi = WiFi.RSSI();
+long rssi;
 
 void printWifiStatus() {
   Serial.print("SSID: ");
@@ -308,6 +308,7 @@ void printWifiStatus() {
   Serial.println(ip);
 
   //signal strength:
+  rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
@@ -539,7 +540,7 @@ void loop() {
   displaySensorData();
   RTCTime currentTime;
   RTC.getTime(currentTime);
-  myFile = SD.open("Readings.txt", FILE_WRITE);
+  myFile = SD.open("Data.txt", FILE_WRITE);
    if (myFile) {
     // Write timestamp to the file on first line
     myFile.print(currentTime.getDayOfMonth(), DEC);
@@ -563,7 +564,7 @@ void loop() {
     myFile.print(", HI: ");
     myFile.print(hic);
     myFile.print(", Raining:");
-    myFile.println(checkForRain() ? "Yes" : "No");
+    myFile.print(checkForRain() ? "Yes" : "No");
     myFile.print(", WiFI Strength (dBm): ");
     myFile.println(rssi);
     myFile.close();
