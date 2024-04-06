@@ -466,11 +466,10 @@ void setup() {
   //pinMode(buzzerpin, OUTPUT);
   pinMode(sensorPinD, INPUT);
   pinMode(DHTPin, INPUT);
+  dht.begin();
   pinMode(sensorPinA, INPUT);
   pinMode(rainpin, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-
-  dht.begin();
 
 //Initializing our SD Card
   Serial.print("INFO: Initializing SD card...");
