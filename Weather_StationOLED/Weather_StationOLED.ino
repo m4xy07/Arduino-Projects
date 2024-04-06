@@ -540,7 +540,7 @@ void loop() {
   displaySensorData();
   RTCTime currentTime;
   RTC.getTime(currentTime);
-  myFile = SD.open("Data.txt", FILE_WRITE);
+  myFile = SD.open("Logging.txt", FILE_WRITE);
    if (myFile) {
     // Write timestamp to the file on first line
     myFile.print(currentTime.getDayOfMonth(), DEC);
