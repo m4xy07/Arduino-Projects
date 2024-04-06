@@ -357,13 +357,10 @@ void displaySensorData() {
 
   // Text color based on air quality (optional)
   if (airQuality <= 200) {
-    display.setTextColor(0x00FF00); // Green for good
     display.print(" (Good)");
   } else if (airQuality <= 500) {
-    display.setTextColor(0xFF8000); // Orange for moderate
     display.print(" (Moderate)");
   } else {
-    display.setTextColor(0xFF0000); // Red for poor
     display.print(" (Very Poor)");
   }
 
@@ -377,6 +374,7 @@ void setup() {
   if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
+  }
   display.display();
   delay(2000); // Pause for 2 seconds
 
@@ -396,7 +394,7 @@ void setup() {
   matrix.autoscroll(300);
   matrix.play(true);
   delay(100);
-}
+
 }
 
 void loop() {
@@ -422,7 +420,7 @@ void loop() {
     return;
   }
 
- /* Serial.print(F("Humidity: "));
+  Serial.print(F("Humidity: "));
   Serial.print(Humidity);
   Serial.print(F("%  Temperature: "));
   Serial.print(Temperature);
@@ -442,7 +440,7 @@ void loop() {
     Serial.println(" V");
   } else {
     Serial.println("No Gas Leakage");
-  }*/
+  }
   displaySensorData();
   delay(delayTime);
 }

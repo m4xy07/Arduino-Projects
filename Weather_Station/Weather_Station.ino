@@ -6,7 +6,7 @@
 
 unsigned long delayTime = 2500;
 
-DHT dht(DHTPin, DHTTYPE);
+
 
 int DHTPin = 2;
 int sensorPinA=A0;
@@ -14,7 +14,7 @@ int sensorPinD=4;
 int sensorDataD;
 int sensorDataA;
 int rainpin=A2;
-
+DHT dht(DHTPin, DHTTYPE);
 int rain;
 float Humidity;
 float Temperature;
