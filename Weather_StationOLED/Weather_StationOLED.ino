@@ -1,14 +1,19 @@
-//Uses a ST7735 LCD Display
+//Uses a 0.96 Yellow-Blue OLED Display Driver IC: SSD1306
 #include <Wire.h>
 #include "Arduino_LED_Matrix.h"
 #include <stdint.h>
 #include "DHT.h"
 #include <SPI.h>
-#include <Adafruit_ST7735.h>
-#include <Adafruit_ST77xx.h>
 #include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 #define DHTTYPE DHT22
 
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 unsigned long delayTime = 2500;
 
@@ -18,7 +23,7 @@ int sensorPinA = A0;
 int sensorPinD = 4;
 int sensorDataD;
 int sensorDataA;
-//int rainpin = A2;
+int rainpin = A2;
 
 DHT dht(DHTPin, DHTTYPE);
 
@@ -28,15 +33,6 @@ float Temperature;
 float Temp_Fahrenheit;
 float hic;
 
-// ST7735 display settings
-const int TFT_CS = 10;
-const int TFT_DC = 9;
-const int TFT_RST = 8;
-Adafruit_ST7735 display = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST); //SPI
-
-#define TFT_MOSI 11  // Data out
-#define TFT_SCLK 13  // Clock out
-//Adafruit_ST7735 display = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST);  //No SPI Slow hai
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -287,11 +283,11 @@ const uint32_t frames[][4] = {
 };
 
 
-/*bool checkForRain() {
+bool checkForRain() {
   int rainSensorValue = analogRead(rainpin);
   int rainThreshold = 500;
   return rainSensorValue > rainThreshold;
-}*/
+}
 
 // Function to read air quality index
 int readAirQualityIndex() {
@@ -320,92 +316,79 @@ bool checkForGasLeak() {
 }
 
 void displaySensorData() {
-  // Set text size for 1.8" display (adjust if needed)
-  display.setTextSize(1); 
-
-  int startingY = 4;
-  int lineThickness = 2;  // Thickness of horizontal lines in pixels
-
-  // Draw top separator line
-  display.fillRect(0, 0, display.width(), lineThickness, TEXT_COLOR);
-
-  // Get bounding box information for "Humidity:" (optional)
-  int16_t x1, y1;
-  uint16_t w, textHeight;  // Assuming textHeight is unsigned
-  display.getTextBounds("Humidity:", 0, 0, &x1, &y1, &w, &textHeight);
-
-  display.setCursor(0, startingY);
+  display.clearDisplay();
+  display.setTextSize(1);
   display.setTextColor(TEXT_COLOR);
+
+  // Display humidity
+  display.setCursor(0, 0);
   display.print("Humidity:");
   display.print(Humidity);
   display.print("%");
-  startingY += textHeight * 2;
-  display.setCursor(0, startingY);
+
+  // Display temperature
+  display.setCursor(0, 10);
   display.print("Temp:");
-  display.setTextColor(HIGHLIGHT_COLOR);
   display.print(Temperature);
-  display.print("C");
-  display.setTextColor(TEXT_INTERESAR_COLOR);
-  display.print(" (");
+  display.print((char)247); // Degree symbol
+  display.print("C (");
   display.print(Temp_Fahrenheit);
   display.print("F)");
 
-  startingY += textHeight * 2.4;  // Adjust spacing based on text height
-  display.setCursor(0, startingY);
-  display.setTextColor(HEAT_INDEX_COLOR);
+  // Display heat index
+  display.setCursor(0, 20);
   display.print("Heat Index:");
   display.print(hic);
+  display.print((char)247); // Degree symbol
   display.print("C");
-  display.setTextColor(rain ? RAIN_COLOR : TEXT_COLOR);
-  display.print("  Rain:");
-  display.print(rain ? "Detected" : "No");
 
-  // Add spacing based on font size
-  startingY += textHeight * 2;
+  // Display rain detection
+  display.setCursor(0, 30);
+  display.print("Raining:");
+  display.print(checkForRain() ? "Yes" : "No");
 
-  // Draw bottom separator line
-  display.fillRect(0, startingY, display.width(), lineThickness, TEXT_COLOR);
+  // Add spacing
+  display.setCursor(0, 35);
 
-  // Draw separator line between sections
-  //display.fillRect(0, startingY - lineThickness, display.width(), lineThickness, TEXT_COLOR);
-
-  // Get bounding box information for "Air Quality:" (optional)
-  // ... (similar to "Humidity:")
-  startingY += textHeight * 2;
-  display.setCursor(0, startingY);
+  // Air quality section
   display.print("Air Quality:");
-  display.setTextColor(TEXT_COLOR);
   int airQuality = readAirQualityIndex();
   display.print(airQuality);
 
+  // Text color based on air quality (optional)
   if (airQuality <= 200) {
-    display.setTextColor(GOOD_COLOR);
+    display.setTextColor(0x00FF00); // Green for good
     display.print(" (Good)");
-   
   } else if (airQuality <= 500) {
-    display.setTextColor(MODERATE_COLOR);
+    display.setTextColor(0xFF8000); // Orange for moderate
     display.print(" (Moderate)");
-   
   } else {
-    display.setTextColor(POOR_COLOR);
+    display.setTextColor(0xFF0000); // Red for poor
     display.print(" (Very Poor)");
   }
+
+  display.display();
 }
 
 
 void setup() {
   Serial.begin(9600);
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); // Don't proceed, loop forever
+  display.display();
+  delay(2000); // Pause for 2 seconds
+
+  // Clear the buffer
+  display.clearDisplay();
+
   //pinMode(buzzerpin, OUTPUT);
   pinMode(sensorPinD, INPUT);
   pinMode(DHTPin, INPUT);
   pinMode(sensorPinA, INPUT);
-  //pinMode(rainpin, INPUT);
+  pinMode(rainpin, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-
-// Initialize ST7735 display
-  //display.initR(INITR_BLACKTAB);
-  display.initR(INITR_BLACKTAB);
-  display.setRotation(3);
 
   dht.begin();
   matrix.loadSequence(frames);
@@ -414,20 +397,20 @@ void setup() {
   matrix.play(true);
   delay(100);
 }
+}
 
 void loop() {
-  display.fillScreen(ST7735_BLACK);
   /*tone(buzzerpin, 1000);
   delay(1000);       
   noTone(buzzerpin);     
   delay(1000); */
   
-  /*if (checkForRain()) {
+  if (checkForRain()) {
     Serial.println("Rain detected.");
     digitalWrite(LED_BUILTIN, HIGH);
   } else {
     digitalWrite(LED_BUILTIN, LOW);
-  }*/
+  }
 
   Humidity = dht.readHumidity();
   Temperature = dht.readTemperature();
@@ -438,9 +421,6 @@ void loop() {
     Serial.println(F("Unable to find DHT Sensor. Check Connection!"));
     return;
   }
-
- // Clear the display
-
 
  /* Serial.print(F("Humidity: "));
   Serial.print(Humidity);
@@ -466,4 +446,5 @@ void loop() {
   displaySensorData();
   delay(delayTime);
 }
+
 
