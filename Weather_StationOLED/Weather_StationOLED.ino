@@ -2,6 +2,7 @@
 #include "Arduino_LED_Matrix.h"
 #include <stdint.h>
 #include "DHT.h"
+#include "RTC.h"
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -10,6 +11,8 @@
 #include <WiFiS3.h>
 #include <ArduinoHttpClient.h>
 #include "secret.h"
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -19,7 +22,7 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-unsigned long delayTime = 2500;
+unsigned long delayTime = 25000;
 
 //int buzzerpin = 8;
 int DHTPin = 2;
@@ -39,7 +42,7 @@ float hic;
 int rainSensorValue;
 
 const char* ssid = SECRET_SSID;
-const char* password = SECRET_PASS;
+const char* pass = SECRET_PASS;
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -52,9 +55,6 @@ const char* password = SECRET_PASS;
 #define TEXT_INTERESAR_COLOR 0x0000FF // Blue
 
 File myFile;
-Sd2Card card;
-SdVolume volume;
-SdFile root;
 
 ArduinoLEDMatrix matrix;
 
@@ -293,6 +293,54 @@ const uint32_t frames[][4] = {
     0xFFFFFFFF }
 };
 
+int wifiStatus = WL_IDLE_STATUS;
+WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
+NTPClient timeClient(Udp);
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your board's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
+
+void connectToWiFi(){
+  // check for the WiFi module:
+  if (WiFi.status() == WL_NO_MODULE) {
+    Serial.println("Communication with WiFi module failed!");
+    // don't continue
+    while (true);
+  }
+
+  String fv = WiFi.firmwareVersion();
+  if (fv < WIFI_FIRMWARE_LATEST_VERSION) {
+    Serial.println("Please upgrade the firmware");
+  }
+
+  // attempt to connect to WiFi network:
+  while (wifiStatus != WL_CONNECTED) {
+    Serial.print("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    wifiStatus = WiFi.begin(ssid, pass);
+
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+
+  Serial.println("Connected to WiFi");
+  printWifiStatus();
+}
 
 bool checkForRain() {
   rainSensorValue = digitalRead(rainpin);
@@ -390,22 +438,37 @@ void setup() {
     Serial.println(F("Warning: OLED Driver SSD1306 Allocation Failed!"));
     for(;;); // Don't proceed, loop forever
   }
+
+
+  connectToWiFi();
+  RTC.begin();
+  Serial.println("\nStarting connection to server...");
+  timeClient.begin();
+  timeClient.update();
+
+  // Get the current date and time from an NTP server and convert
+  // it to UTC +2 by passing the time zone offset in hours.
+  // You may change the time zone offset to your local one.
+  auto timeZoneOffsetHours = 5.5;
+  auto unixTime = timeClient.getEpochTime() + (timeZoneOffsetHours * 3600);
+  Serial.print("Unix time = ");
+  Serial.println(unixTime);
+  RTCTime timeToSet = RTCTime(unixTime);
+  RTC.setTime(timeToSet);
+
+  // Retrieve the date and time from the RTC and print them
+  RTCTime currentTime;
+  RTC.getTime(currentTime); 
+  Serial.println("The RTC was just set to: " + String(currentTime));
+
   //Connecting to the WiFi Network
-   WiFi.begin(ssid, password);
+/*   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.println("Connecting to WiFi..");
   }
   Serial.println("Connected to the WiFi network");
-//Initializing our SD Card
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(4)) {
-    Serial.println("Warning: Initialization failed!");
-    while (1);
-  }
-  Serial.println("SD Initialization done.");
-  //myFile = SD.open("test.txt", FILE_WRITE);
-
+ */
   display.display();
   delay(2000); // Pause for 2 seconds
 
@@ -417,6 +480,15 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
   dht.begin();
+
+//Initializing our SD Card
+  Serial.print("Initializing SD card...");
+  if (!SD.begin(4)) {
+    Serial.println("Warning: Initialization failed!");
+    while (1);
+  }
+  Serial.println("SD Initialization done.");
+
   matrix.loadSequence(frames);
   matrix.begin();
   matrix.autoscroll(300);
@@ -474,6 +546,37 @@ void loop() {
   Serial.println(F(" Rain "));
 
   displaySensorData();
+  RTCTime currentTime;
+  RTC.getTime(currentTime);
+  myFile = SD.open("Readings.txt", FILE_WRITE);
+   if (myFile) {
+    // Write timestamp to the file on first line
+    myFile.print(currentTime.getYear(), DEC);
+    myFile.print("-");
+    myFile.print(Month2int(currentTime.getMonth()));
+    myFile.print("-");
+    myFile.print(currentTime.getDayOfMonth(), DEC);
+    myFile.print(" ");
+    myFile.print(currentTime.getHour(), DEC);
+    myFile.print(":");
+    myFile.print(currentTime.getMinutes(), DEC);
+    myFile.print(":");
+    myFile.println(currentTime.getSeconds(), DEC);
+
+    myFile.print("Temperature: ");
+    myFile.print(Temperature);
+    myFile.print(", Humidity: ");
+    myFile.print(Humidity);
+    myFile.print(", AQI: ");
+    myFile.println(airQualityIndex);
+    myFile.print(", HI: ");
+    myFile.println(hic);
+    myFile.close();
+    Serial.println("Data saved to SD card");
+  } else {
+    Serial.println("Error opening file");
+  }
+
   delay(delayTime);
 }
 
