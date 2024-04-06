@@ -563,7 +563,7 @@ void loop() {
     myFile.print(airQualityIndex);
     myFile.print(", HI: ");
     myFile.print(hic);
-    myFile.print(", Raining:");
+    myFile.print(", Raining: ");
     myFile.print(checkForRain() ? "Yes" : "No");
     myFile.print(", WiFI Strength (dBm): ");
     myFile.println(rssi);
