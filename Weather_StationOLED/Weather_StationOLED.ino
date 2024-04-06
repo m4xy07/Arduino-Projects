@@ -427,6 +427,7 @@ void displaySensorData() {
 
 void setup() {
   Serial.begin(9600);
+  Serial.println(F("INFO: Booting and loading modules!"));
   //Initializing our OLED module
   if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("Warning: OLED Driver SSD1306 Allocation Failed!"));
