@@ -13,12 +13,12 @@
 #include "secret.h"
 #include <NTPClient.h>
 #include <WiFiUdp.h>
-#include <WiFiSSLClient.h>
 #include <Crypto.h>
 #include <SHA256.h>
 #include <ArduinoJson.h>
 #include <ArduinoJson.hpp>
-
+#include <HttpClient.h>
+#include <b64.h>
 
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -52,7 +52,7 @@ const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
 const char* secret = SHARED_SECRET;
 const char* host = "159.65.154.81"; 
-const int port = 3000;
+const int port = 80;
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -307,7 +307,6 @@ int wifiStatus = WL_IDLE_STATUS;
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 NTPClient timeClient(Udp);
 long rssi;
-WiFiSSLClient client;
 
 void printWifiStatus() {
   Serial.print("SSID: ");
@@ -616,9 +615,9 @@ client.print(host);
 client.print("\r\n");
 client.print("Connection: close\r\n");
 client.print("\r\n");*/
-
-    StaticJsonDocument<200> jsonDoc;
-    jsonDoc["time"] = RTC.getTime(currentTime);
+RTC.getTime(currentTime);
+    /*StaticJsonDocument<200> jsonDoc;
+    jsonDoc["time"] = String(currentTime);
     jsonDoc["temperature"] = Temperature;
     jsonDoc["humidity"] = Humidity;
     jsonDoc["aqi"] = airQualityIndex;
@@ -627,52 +626,137 @@ client.print("\r\n");*/
     jsonDoc["wifi_strength"] = rssi;
 
     char dataChars[200];
-    serializeJson(jsonDoc, dataChars);
+serializeJson(jsonDoc, dataChars);*/
 
-    // Compute HMAC-SHA256 hash
-    uint8_t hash[SHA256::HASH_SIZE];
-    SHA256 sha256;
-    sha256.resetHMAC(secret, strlen(secret));
-    sha256.update(dataChars, strlen(dataChars));
-    sha256.finalizeHMAC(secret, strlen(secret), hash, SHA256::HASH_SIZE);
+// Compute HMAC-SHA256 hash
+/*uint8_t hash[SHA256::HASH_SIZE];
+SHA256 sha256;
+sha256.resetHMAC(secret, strlen(secret));
+sha256.update(dataChars, strlen(dataChars));
+sha256.finalizeHMAC(secret, strlen(secret), hash, SHA256::HASH_SIZE);*/
 
-    // Connect to the VPS server
-    WiFiClient client;
+// Connect to the VPS server
+// Create a buffer for the JSON data
+WiFiClient client;
+/*StaticJsonDocument<200> jsonDoc;
+
+// Create a JSON object in the buffer
+JsonObject jsonData = jsonDoc.to<JsonObject>();
+
+// Add the data to the JSON object
+jsonData["time"] = String(currentTime);
+jsonData["temperature"] = Temperature;
+jsonData["humidity"] = Humidity;
+jsonData["aqi"] = airQualityIndex;
+jsonData["hi"] = hic;
+jsonData["raining"] = checkForRain() ? "Yes" : "No";
+jsonData["wifi_strength"] = rssi;*/
+
+// Print out the JSON data for debugging purposes
 
 
-    if (client.connect(host, port)) {
-        // Send HTTP POST request with HMAC-SHA256 hash and JSON data
-        client.print("POST /data HTTP/1.1\r\n");
-        client.print("Host: ");
-        client.print(host);
-        client.print("\r\n");
-        client.print("Content-Type: application/json\r\n");
-        client.print("X-HMAC-SHA256: ");
-        for (int i = 0; i < SHA256::HASH_SIZE; i++) {
-            if (hash[i] < 16)
-                client.print('0');
-            client.print(hash[i], HEX);
-        }
-        client.print("\r\n");
-        client.print("Content-Length: ");
-        client.print(strlen(dataChars));
-        client.print("\r\n");
-        client.print("\r\n");
-        client.print(dataChars);
+if (client.connect(host, port)) {
+    Serial.println("Connected to server");
 
-        // Read the response from the VPS server
-        while (client.connected()) {
-            if (client.available()) {
-                String line = client.readStringUntil('\n');
-                Serial.println(line);
-            }
-        }
+    // Create a JSON object
+StaticJsonDocument<200> jsonDoc;
+// Create a JSON object in the buffer
+JsonObject jsonData = jsonDoc.to<JsonObject>();
 
-        // Close the connection to the VPS server
-        client.stop();
-    } else {
-        Serial.println("Connection to VPS server failed");
+// Add the data to the JSON object
+jsonData["time"] = String(currentTime);
+jsonData["temperature"] = Temperature;
+jsonData["humidity"] = Humidity;
+jsonData["aqi"] = airQualityIndex;
+jsonData["hi"] = hic;
+jsonData["raining"] = checkForRain() ? "Yes" : "No";
+jsonData["wifi_strength"] = rssi;
+
+    // Convert the JSON object to a string
+    String jsonString;
+    serializeJson(jsonDoc, jsonString);
+
+    Serial.println("JSON data:");
+serializeJson(jsonData, Serial);
+Serial.print("Content-Length: ");
+Serial.println(measureJson(jsonData));
+
+    // Send the JSON string to the server
+    client.print("POST /data HTTP/1.1\r\n");
+    client.print("Host: " + String(host) + "\r\n");
+    client.print("Content-Type: application/json\r\n");
+    client.print("Content-Length: " + String(jsonString.length()) + "\r\n");
+    client.print("\r\n");
+    client.print(jsonString);
+
+    // Read the response from the server
+    Serial.println("Reading response");
+    while (client.connected()) {
+      while (client.available()) {
+        char c = client.read();
+        Serial.write(c);
+      }
     }
+
+    // Close the connection
+    client.stop();
+  } else {
+    Serial.println("Connection to server failed");
+  }
+
+
+// Send the JSON data to the server
+/*HttpClient httpClient;
+httpClient.begin(client, "http://159.65.154.81:80/data");
+httpClient.addHeader("Content-Type", "application/json");
+int httpResponseCode = httpClient.POST((const char*)jsonData.as<String>().c_str());
+
+if (httpResponseCode > 0) {
+    String response = httpClient.getString();
+    Serial.println(httpResponseCode);
+    Serial.println(response);
+} else {
+    Serial.print("Error on sending POST: ");
+    Serial.println(httpResponseCode);
+}
+
+httpClient.end();*/
+
+ /* if (client.connect(host, port)) {
+  // Set the Content-Length header to the length of the JSON data
+    int jsonLength = strlen(dataChars);
+    client.print("Content-Length: ");
+    client.print(jsonLength);
+    client.print("\r\n");
+    // Send HTTP POST request with JSON data only
+    client.print("POST /data HTTP/1.1\r\n");
+    client.print("Host: ");
+    client.print(host);
+    client.print("\r\n");
+    client.print("Content-Type: application/json\r\n");
+    client.print("\r\n");
+    client.print(dataChars);
+
+  // Read the response from the VPS server
+  while (client.connected()) {
+    if (client.available()) {
+      String line = client.readStringUntil('\n');
+      Serial.println(line);
+    }
+  }
+
+    //Print out the JSON data and Content-Length header debugging
+    Serial.println("JSON data:");
+    Serial.println(dataChars);
+    Serial.print("Content-Length: ");
+    Serial.println(strlen(dataChars));
+
+  // Close the connection to the VPS server
+  client.stop();
+}
+     else {
+        Serial.println("Connection to VPS server failed");
+    }*/
 
   delay(delayTime);
 }
