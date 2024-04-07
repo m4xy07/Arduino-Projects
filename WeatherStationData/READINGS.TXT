@@ -1,0 +1,740 @@
+2000-14-0 0:0:0
+Temperature: 34.30, Humidity: 30.50, AQI: 250
+, HI: 33.78
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 31.50, AQI: 230
+, HI: 33.83
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 30.80, AQI: 227
+, HI: 33.70
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 30.60, AQI: 227
+, HI: 33.66
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 30.40, AQI: 243
+, HI: 33.63
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 30.60, AQI: 229
+, HI: 33.66
+2000-14-0 0:0:0
+Temperature: 34.20, Humidity: 30.70, AQI: 235
+, HI: 33.68
+2000-14-0 0:0:0
+Temperature: 34.10, Humidity: 30.80, AQI: 248
+, HI: 33.56
+2000-14-0 0:0:0
+Temperature: 34.10, Humidity: 30.80, AQI: 234
+, HI: 33.56
+2000-14-0 0:0:0
+Temperature: 34.10, Humidity: 30.80, AQI: 228
+, HI: 33.56
+2000-14-0 0:0:0
+Temperature: 34.10, Humidity: 31.00, AQI: 249
+, HI: 33.60
+2000-14-0 0:0:0
+Temperature: 34.10, Humidity: 31.00, AQI: 254
+, HI: 33.60
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 30.80, AQI: 253
+, HI: 33.43
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 31.10, AQI: 240
+, HI: 33.48
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 30.80, AQI: 224
+, HI: 33.43
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 31.20, AQI: 249
+, HI: 33.50
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 30.80, AQI: 245
+, HI: 33.43
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 31.00, AQI: 252
+, HI: 33.46
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 31.00, AQI: 239
+, HI: 33.46
+2000-14-0 0:0:0
+Temperature: 34.00, Humidity: 31.00, AQI: 231
+, HI: 33.46
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.10, AQI: 243
+, HI: 33.34
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.00, AQI: 237
+, HI: 33.33
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 30.90, AQI: 251
+, HI: 33.31
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.10, AQI: 249
+, HI: 33.34
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.00, AQI: 243
+, HI: 33.19
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.00, AQI: 230
+, HI: 33.33
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.10, AQI: 246
+, HI: 33.34
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.00, AQI: 250
+, HI: 33.19
+2000-14-0 0:0:0
+Temperature: 33.90, Humidity: 31.00, AQI: 226
+, HI: 33.33
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.00, AQI: 231
+, HI: 33.19
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.10, AQI: 243
+, HI: 33.21
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 30.80, AQI: 250
+, HI: 33.16
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 30.80, AQI: 225
+, HI: 33.16
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 30.80, AQI: 243
+, HI: 33.16
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.30, AQI: 228
+, HI: 33.24
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.20, AQI: 227
+, HI: 33.23
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.30, AQI: 227
+, HI: 33.24
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.30, AQI: 236
+, HI: 33.11
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.00, AQI: 247
+, HI: 33.19
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.10, AQI: 235
+, HI: 33.21
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.20, AQI: 254
+, HI: 33.09
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 31.00, AQI: 254
+, HI: 33.19
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 252
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 249
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 30.50, AQI: 252
+, HI: 33.10
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.50, AQI: 238
+, HI: 32.97
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 228
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.20, AQI: 250
+, HI: 33.09
+2000-14-0 0:0:0
+Temperature: 33.80, Humidity: 30.80, AQI: 256
+, HI: 33.16
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.60, AQI: 231
+, HI: 32.99
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.80, AQI: 228
+, HI: 33.02
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.70, AQI: 226
+, HI: 33.01
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.50, AQI: 250
+, HI: 32.97
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.60, AQI: 253
+, HI: 32.99
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 236
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 242
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.50, AQI: 240
+, HI: 32.97
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.50, AQI: 226
+, HI: 32.97
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 238
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.80, AQI: 251
+, HI: 33.02
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 227
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 229
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 239
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 245
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.80, AQI: 228
+, HI: 33.02
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 234
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.80, AQI: 245
+, HI: 33.02
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 241
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 256
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 231
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 229
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 242
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 228
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 230
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 250
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 233
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 240
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.20, AQI: 247
+, HI: 33.09
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 235
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 251
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 230
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 257
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 250
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 254
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 233
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 252
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 255
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 238
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 245
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 233
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.60, AQI: 254
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 251
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 234
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 251
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 258
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 242
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 229
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 243
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 256
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 255
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 258
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 241
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 245
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 251
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 233
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 252
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.60, AQI: 238
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 240
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 259
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 233
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 254
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 247
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 238
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 237
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 239
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 254
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 258
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.50, AQI: 257
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 243
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 247
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 254
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 248
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 243
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 244
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 254
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 241
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 236
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 253
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.10, AQI: 254
+, HI: 33.07
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 259
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 255
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 241
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.80, AQI: 238
+, HI: 33.02
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 257
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 257
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 236
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 233
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 257
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 245
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 238
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.60, AQI: 260
+, HI: 32.99
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.70, AQI: 263
+, HI: 33.01
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 255
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 236
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 257
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 257
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 30.90, AQI: 259
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 260
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 258
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 245
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 239
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 234
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 232
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 247
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.70, Humidity: 31.00, AQI: 261
+, HI: 33.06
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 248
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 262
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 239
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 253
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 262
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 251
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 245
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 242
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 248
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 248
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 253
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 242
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 262
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.70, AQI: 265
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.80, AQI: 266
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 265
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 256
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.20, AQI: 270
+, HI: 32.96
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.00, AQI: 265
+, HI: 32.92
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 30.70, AQI: 277
+, HI: 32.74
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 259
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 30.90, AQI: 242
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.10, AQI: 264
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.70, AQI: 263
+, HI: 33.04
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.80, AQI: 262
+, HI: 32.93
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.90, AQI: 255
+, HI: 32.94
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 32.30, AQI: 251
+, HI: 33.01
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 32.60, AQI: 259
+, HI: 33.20
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 32.30, AQI: 264
+, HI: 33.15
+2000-14-0 0:0:0
+Temperature: 33.60, Humidity: 31.90, AQI: 265
+, HI: 33.08
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.70, AQI: 266
+, HI: 32.91
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.60, AQI: 242
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 239
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 244
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.20, AQI: 260
+, HI: 32.82
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.10, AQI: 236
+, HI: 32.81
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.40, AQI: 265
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 261
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.50, AQI: 263
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.50, AQI: 261
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 253
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.30, AQI: 260
+, HI: 32.71
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 248
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.40, AQI: 247
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.40, AQI: 255
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.40, AQI: 265
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.20, AQI: 246
+, HI: 32.82
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 259
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.40, AQI: 266
+, HI: 32.86
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.30, AQI: 253
+, HI: 32.71
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.30, AQI: 243
+, HI: 32.71
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.20, AQI: 240
+, HI: 32.69
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.10, AQI: 265
+, HI: 32.81
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 249
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.50, AQI: 267
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.50, AQI: 256
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.50, AQI: 266
+, HI: 32.87
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.10, AQI: 245
+, HI: 32.81
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.50, AQI: 263
+, HI: 32.74
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.80, AQI: 266
+, HI: 32.93
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.60, AQI: 267
+, HI: 32.89
+2000-14-0 0:0:0
+Temperature: 33.50, Humidity: 31.30, AQI: 264
+, HI: 32.84
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.30, AQI: 259
+, HI: 32.71
+2000-14-0 0:0:0
+Temperature: 33.40, Humidity: 31.20, AQI: 267
+, HI: 32.69
+2024-4-6 22:0:13
+Temperature: 33.50, Humidity: 31.10, AQI: 272
+, HI: 32.81
+2024-4-6 22:0:38
+Temperature: 33.50, Humidity: 31.10, AQI: 273
+, HI: 32.81
+2024-4-6 22:1:4
+Temperature: 33.40, Humidity: 31.40, AQI: 254
+, HI: 32.72
+2024-4-6 22:1:29
+Temperature: 33.40, Humidity: 31.90, AQI: 277
+, HI: 32.81
+2024-4-6 22:1:55
+Temperature: 33.40, Humidity: 31.80, AQI: 258
+, HI: 32.79
+2024-4-6 22:2:20
+Temperature: 33.40, Humidity: 32.10, AQI: 235
+, HI: 32.84
+2024-4-6 22:2:46
+Temperature: 33.40, Humidity: 33.60, AQI: 232
+, HI: 33.11
+2024-4-6 22:3:11
+Temperature: 33.50, Humidity: 30.70, AQI: 204
+, HI: 32.74
+2024-4-6 22:3:37
+Temperature: 33.50, Humidity: 30.70, AQI: 225
+, HI: 32.74
+2024-4-6 22:4:2
+Temperature: 33.50, Humidity: 31.40, AQI: 187
+, HI: 32.86
+2024-4-6 22:4:28
+Temperature: 33.50, Humidity: 31.80, AQI: 201
+, HI: 32.93
+2024-4-6 22:4:53
+Temperature: 33.50, Humidity: 31.90, AQI: 187
+, HI: 32.94
+2024-4-6 22:5:18
+Temperature: 33.50, Humidity: 31.90, AQI: 199
+, HI: 32.94
+2024-4-6 22:5:44
+Temperature: 33.50, Humidity: 32.40, AQI: 210
+, HI: 33.03
+2024-4-6 22:6:9
+Temperature: 33.40, Humidity: 32.10, AQI: 190
+, HI: 32.84
+2024-4-6 22:6:35
+Temperature: 33.40, Humidity: 31.80, AQI: 191
+, HI: 32.79
+2024-4-6 22:7:0
+Temperature: 33.40, Humidity: 31.80, AQI: 201
+, HI: 32.79
+2024-4-6 22:7:26
+Temperature: 33.40, Humidity: 32.20, AQI: 189
+, HI: 32.86
+2024-4-6 22:7:48
+Temperature: 33.40, Humidity: 32.10, AQI: 208
+, HI: 32.84
+2024-4-6 22:8:13
+Temperature: 33.40, Humidity: 32.10, AQI: 193
+, HI: 32.84
+2066-1-1 5:30:13
+Temperature: 33.40, Humidity: 32.30, AQI: 202
+, HI: 32.88
+2066-1-1 5:30:38
+Temperature: 33.40, Humidity: 32.60, AQI: 208
+, HI: 32.93
+2066-1-1 5:31:4
+Temperature: 33.40, Humidity: 32.20, AQI: 196
+, HI: 32.86
+2066-1-1 5:31:29
+Temperature: 33.40, Humidity: 32.20, AQI: 205
+, HI: 32.86
+2066-1-1 5:31:55
+Temperature: 33.40, Humidity: 31.90, AQI: 200
+, HI: 32.81
+6-4-2024 22:17:43 | Temperature: 33.10, Humidity: 32.80, AQI: 185, HI: 32.56, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:18:9 | Temperature: 33.10, Humidity: 32.60, AQI: 211, HI: 32.53, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:18:34 | Temperature: 33.20, Humidity: 31.90, AQI: 186, HI: 32.54, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:18:59 | Temperature: 33.20, Humidity: 31.80, AQI: 204, HI: 32.53, Raining:No
+, WiFI Strength (dBm): 0

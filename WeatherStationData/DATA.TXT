@@ -1,0 +1,95 @@
+6-4-2024 22:19:22 | Temperature: 33.20, Humidity: 31.70, AQI: 198, HI: 32.51, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:19:47 | Temperature: 33.20, Humidity: 31.80, AQI: 189, HI: 32.53, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:20:13 | Temperature: 33.20, Humidity: 31.80, AQI: 190, HI: 32.53, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:20:38 | Temperature: 33.30, Humidity: 31.80, AQI: 210, HI: 32.66, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:21:4 | Temperature: 33.30, Humidity: 31.60, AQI: 218, HI: 32.63, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:21:29 | Temperature: 33.30, Humidity: 31.40, AQI: 200, HI: 32.59, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:21:55 | Temperature: 33.30, Humidity: 31.10, AQI: 220, HI: 32.55, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:22:20 | Temperature: 33.20, Humidity: 31.10, AQI: 201, HI: 32.42, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:22:45 | Temperature: 33.10, Humidity: 31.20, AQI: 212, HI: 32.30, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:23:11 | Temperature: 33.00, Humidity: 31.40, AQI: 217, HI: 32.21, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:23:36 | Temperature: 33.00, Humidity: 31.70, AQI: 240, HI: 32.25, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:24:2 | Temperature: 33.10, Humidity: 31.20, AQI: 231, HI: 32.30, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:24:27 | Temperature: 33.10, Humidity: 31.70, AQI: 215, HI: 32.38, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:24:53 | Temperature: 33.10, Humidity: 31.40, AQI: 224, HI: 32.33, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:25:18 | Temperature: 33.10, Humidity: 30.90, AQI: 207, HI: 32.26, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:25:44 | Temperature: 33.10, Humidity: 31.20, AQI: 222, HI: 32.30, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:26:9 | Temperature: 33.00, Humidity: 31.00, AQI: 203, HI: 32.15, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:26:34 | Temperature: 33.00, Humidity: 31.20, AQI: 222, HI: 32.18, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:27:0 | Temperature: 33.00, Humidity: 31.80, AQI: 221, HI: 32.27, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:27:25 | Temperature: 33.00, Humidity: 31.60, AQI: 209, HI: 32.24, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:27:51 | Temperature: 33.00, Humidity: 31.50, AQI: 225, HI: 32.22, Raining:Yes
+, WiFI Strength (dBm): 0
+6-4-2024 22:28:16 | Temperature: 33.10, Humidity: 31.20, AQI: 219, HI: 32.30, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:28:42 | Temperature: 33.10, Humidity: 31.00, AQI: 232, HI: 32.27, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:29:7 | Temperature: 33.10, Humidity: 31.00, AQI: 232, HI: 32.27, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:29:33 | Temperature: 33.20, Humidity: 31.10, AQI: 223, HI: 32.42, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:29:58 | Temperature: 33.20, Humidity: 31.30, AQI: 234, HI: 32.45, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:30:23 | Temperature: 33.20, Humidity: 31.40, AQI: 236, HI: 32.46, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:30:49 | Temperature: 33.20, Humidity: 31.50, AQI: 235, HI: 32.48, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:31:14 | Temperature: 33.20, Humidity: 31.30, AQI: 248, HI: 32.45, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:31:40 | Temperature: 33.20, Humidity: 31.10, AQI: 218, HI: 32.42, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:32:5 | Temperature: 33.20, Humidity: 31.40, AQI: 235, HI: 32.46, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:32:31 | Temperature: 33.20, Humidity: 31.80, AQI: 256, HI: 32.53, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:32:56 | Temperature: 33.20, Humidity: 31.60, AQI: 234, HI: 32.49, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:33:21 | Temperature: 33.20, Humidity: 31.60, AQI: 252, HI: 32.49, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:34:33 | Temperature: 33.20, Humidity: 31.70, AQI: 212, HI: 32.51, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:34:59 | Temperature: 33.20, Humidity: 31.70, AQI: 218, HI: 32.51, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:35:24 | Temperature: 33.30, Humidity: 31.70, AQI: 212, HI: 32.64, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:35:50 | Temperature: 33.30, Humidity: 31.40, AQI: 205, HI: 32.59, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:36:15 | Temperature: 33.30, Humidity: 31.50, AQI: 217, HI: 32.61, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:36:40 | Temperature: 33.40, Humidity: 31.60, AQI: 214, HI: 32.76, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:37:6 | Temperature: 33.30, Humidity: 31.40, AQI: 216, HI: 32.59, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:37:31 | Temperature: 33.30, Humidity: 31.60, AQI: 218, HI: 32.63, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:37:57 | Temperature: 33.40, Humidity: 31.60, AQI: 240, HI: 32.76, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:40:46 | Temperature: 33.20, Humidity: 32.30, AQI: 224, HI: 32.61, Raining:No
+, WiFI Strength (dBm): 0
+6-4-2024 22:41:46 | Temperature: 33.20, Humidity: 32.30, AQI: 233, HI: 32.61, Raining:No, WiFI Strength (dBm): -55
+6-4-2024 22:42:38 | Temperature: 33.30, Humidity: 35.90, AQI: 222, HI: 33.40, Raining:No, WiFI Strength (dBm): -55
+6-4-2024 22:43:4 | Temperature: 33.60, Humidity: 32.80, AQI: 233, HI: 33.24, Raining:No, WiFI Strength (dBm): -55
+6-4-2024 22:43:29 | Temperature: 33.60, Humidity: 32.20, AQI: 227, HI: 33.13, Raining:No, WiFI Strength (dBm): -55
+6-4-2024 22:44:20 | Temperature: 33.50, Humidity: 32.30, AQI: 241, HI: 33.01, Raining:No, WiFI Strength (dBm): -55
+6-4-2024 22:44:41 | Temperature: 33.50, Humidity: 32.30, AQI: 236, HI: 33.01, Raining:No, WiFI Strength (dBm): -61
+6-4-2024 22:45:6 | Temperature: 33.50, Humidity: 32.70, AQI: 242, HI: 33.08, Raining:No, WiFI Strength (dBm): -61
