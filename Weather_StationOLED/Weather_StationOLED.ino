@@ -13,6 +13,12 @@
 #include "secret.h"
 #include <NTPClient.h>
 #include <WiFiUdp.h>
+#include <WiFiSSLClient.h>
+#include <Crypto.h>
+#include <SHA256.h>
+#include <ArduinoJson.h>
+#include <ArduinoJson.hpp>
+
 
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -44,6 +50,8 @@ int rainSensorValue;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
+const char* host = VPS_ADDRESS;
+const char* secret = SHARED_SECRET;
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -298,6 +306,7 @@ int wifiStatus = WL_IDLE_STATUS;
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
 NTPClient timeClient(Udp);
 long rssi;
+WiFiSSLClient client;
 
 void printWifiStatus() {
   Serial.print("SSID: ");
@@ -460,6 +469,8 @@ void setup() {
   RTC.getTime(currentTime); 
   Serial.println("The RTC was just set to: " + String(currentTime));
 
+  //client.setFingerprint(CERT);
+
   //Connecting to the WiFi Network
 /*   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -572,6 +583,85 @@ void loop() {
   } else {
     Serial.println("Error opening file");
   }
+
+  String timeData = "{\"time\":\"";
+    timeData += currentTime.getYear() + "-";
+    if (Month2int(currentTime.getMonth()) < 10) {
+        timeData += "0";
+    }
+    timeData += Month2int(currentTime.getMonth()) + "-";
+    if (currentTime.getDayOfMonth() < 10) {
+        timeData += "0";
+    }
+    timeData += currentTime.getDayOfMonth() + "T";
+    if (currentTime.getHour() < 10) {
+        timeData += "0";
+    }
+    timeData += currentTime.getHour() + ":";
+    if (currentTime.getMinutes() < 10) {
+        timeData += "0";
+    }
+    timeData += currentTime.getMinutes() + ":";
+    if (currentTime.getSeconds() < 10) {
+        timeData += "0";
+    }
+    timeData += currentTime.getSeconds() + "Z\"}";
+
+
+    StaticJsonDocument<200> jsonDoc;
+    jsonDoc["time"] = RTC.getTime(currentTime);
+    jsonDoc["temperature"] = Temperature;
+    jsonDoc["humidity"] = Humidity;
+    jsonDoc["aqi"] = airQualityIndex;
+    jsonDoc["hi"] = hic;
+    jsonDoc["raining"] = checkForRain() ? "Yes" : "No";
+    jsonDoc["wifi_strength"] = rssi;
+
+    char dataChars[200];
+    serializeJson(jsonDoc, dataChars);
+
+    // Compute HMAC-SHA256 hash
+    uint8_t hash[SHA256::HASH_SIZE];
+    SHA256 sha256;
+    sha256.resetHMAC(secret, strlen(secret));
+    sha256.update(dataChars, strlen(dataChars));
+    sha256.finalizeHMAC(secret, strlen(secret), hash, SHA256::HASH_SIZE);
+
+    // Connect to the VPS server
+    WiFiClient client;
+    if (client.connect(host, 80)) {
+        // Send HTTP POST request with HMAC-SHA256 hash and JSON data
+        client.print("POST /data HTTP/1.1\r\n");
+        client.print("Host: ");
+        client.print(host);
+        client.print("\r\n");
+        client.print("Content-Type: application/json\r\n");
+        client.print("X-HMAC-SHA256: ");
+        for (int i = 0; i < SHA256::HASH_SIZE; i++) {
+            if (hash[i] < 16)
+                client.print('0');
+            client.print(hash[i], HEX);
+        }
+        client.print("\r\n");
+        client.print("Content-Length: ");
+        client.print(strlen(dataChars));
+        client.print("\r\n");
+        client.print("\r\n");
+        client.print(dataChars);
+
+        // Read the response from the VPS server
+        while (client.connected()) {
+            if (client.available()) {
+                String line = client.readStringUntil('\n');
+                Serial.println(line);
+            }
+        }
+
+        // Close the connection to the VPS server
+        client.stop();
+    } else {
+        Serial.println("Connection to VPS server failed");
+    }
 
   delay(delayTime);
 }
