@@ -50,8 +50,9 @@ int rainSensorValue;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
-const char* host = VPS_ADDRESS;
 const char* secret = SHARED_SECRET;
+const char* host = "159.65.154.81"; 
+const int port = 3000;
 
 #define BACKGROUND_COLOR  0x000000  // Black
 #define TEXT_COLOR        0xFFFFFF  // White
@@ -608,6 +609,14 @@ void loop() {
     timeData += currentTime.getSeconds() + "Z\"}";
 
 
+/*client.connect(host, port);
+client.print("GET / HTTP/1.1\r\n");
+client.print("Host: ");
+client.print(host);
+client.print("\r\n");
+client.print("Connection: close\r\n");
+client.print("\r\n");*/
+
     StaticJsonDocument<200> jsonDoc;
     jsonDoc["time"] = RTC.getTime(currentTime);
     jsonDoc["temperature"] = Temperature;
@@ -629,7 +638,9 @@ void loop() {
 
     // Connect to the VPS server
     WiFiClient client;
-    if (client.connect(host, 80)) {
+
+
+    if (client.connect(host, port)) {
         // Send HTTP POST request with HMAC-SHA256 hash and JSON data
         client.print("POST /data HTTP/1.1\r\n");
         client.print("Host: ");
