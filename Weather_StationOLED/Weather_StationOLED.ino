@@ -597,10 +597,10 @@ jsonData["raining"] = checkForRain() ? "Yes" : "No";
 jsonData["wifi_strength"] = rssi;
 
     // Convert the JSON object to a string
-    String jsonString;
-    serializeJson(jsonDoc, jsonString);
+String jsonString;
+serializeJson(jsonDoc, jsonString);
 
-    Serial.println("JSON data:");
+Serial.println("JSON data:");
 serializeJson(jsonData, Serial);
 Serial.print("Content-Length: ");
 Serial.println(measureJson(jsonData));
@@ -613,7 +613,7 @@ Serial.println(measureJson(jsonData));
     client.print("\r\n");
     client.print(jsonString);
 
-    // Read the response from the server
+    // Read the response from the server (Debugging ; will remove l8r)
     Serial.println("Reading response");
     while (client.connected()) {
       while (client.available()) {
