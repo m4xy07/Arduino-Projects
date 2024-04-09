@@ -19,6 +19,7 @@
 #include <ArduinoJson.hpp>
 #include <HttpClient.h>
 #include <b64.h>
+#include <BME280SpiSw.h>
 
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -26,18 +27,26 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
+//for bme280
+#define CHIP_SELECT_PIN 6
+#define MOSI_PIN 5
+#define MISO_PIN 7
+#define SCK_PIN  8
+BME280SpiSw::Settings settings(CHIP_SELECT_PIN, MOSI_PIN, MISO_PIN, SCK_PIN);
+BME280SpiSw bme(settings);
+
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-unsigned long delayTime = 25000;
+unsigned long delayTime = 60000;
 auto timeZoneOffsetHours = 5.5;
 
-//int buzzerpin = 8;
+int buzzerpin = 8;
 int DHTPin = 2;
 int sensorPinA = A0;
-int sensorPinD = 4;
+int sensorPinD = 3;
 int sensorDataD;
 int sensorDataA;
-int rainpin = 7;
+int rainpin = 9;
 
 DHT dht(DHTPin, DHTTYPE);
 
@@ -47,6 +56,7 @@ float Temperature;
 float Temp_Fahrenheit;
 float hic;
 int rainSensorValue;
+float pres;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
@@ -444,6 +454,23 @@ void setup() {
     for(;;); // Don't proceed, loop forever
   }
 
+while(!bme.begin())
+  {
+    Serial.println("Could not find BME280 sensor!");
+    delay(1000);
+  }
+switch(bme.chipModel())
+  {
+     case BME280::ChipModel_BME280:
+       Serial.println("Found BME280 sensor! Success.");
+       break;
+     case BME280::ChipModel_BMP280:
+       Serial.println("Found BMP280 sensor! No Humidity available.");
+       break;
+     default:
+       Serial.println("Found UNKNOWN sensor! Error!");
+  }
+
   //pinMode(buzzerpin, OUTPUT);
   pinMode(sensorPinD, INPUT);
   pinMode(DHTPin, INPUT);
@@ -490,10 +517,7 @@ void setup() {
 }
 
 void loop() {
-  /*tone(buzzerpin, 1000);
-  delay(1000);       
-  noTone(buzzerpin);     
-  delay(1000); */
+
   
   if (checkForRain()) {
     Serial.println("Rain detected.");
@@ -501,6 +525,14 @@ void loop() {
   } else {
     digitalWrite(LED_BUILTIN, LOW);
   }
+  
+   float temp(NAN), hum(NAN);
+
+   BME280::TempUnit tempUnit(BME280::TempUnit_Celsius);
+   BME280::PresUnit presUnit(BME280::PresUnit_Pa);
+   bme.read(pres, temp, hum, tempUnit, presUnit);
+   float presi = pres/100;
+  float alt = 44330 * ( 1 - pow(presi/1013.25, 1/5.255) );
 
   Humidity = dht.readHumidity();
   Temperature = dht.readTemperature();
@@ -509,6 +541,14 @@ void loop() {
 
   if (isnan(Humidity) || isnan(Temperature) || isnan(Temp_Fahrenheit)) {
     Serial.println(F("Warning: Unable to find DHT Sensor. Check Connection!"));
+  /*digitalWrite(buzzerpin, HIGH);
+  delay(100);
+  digitalWrite(buzzerpin, LOW);
+  delay(1000);
+  tone(buzzerpin, 1000);
+  delay(500);       
+  noTone(buzzerpin);     
+  delay(3000);*/
     return;
   }
 
@@ -593,6 +633,8 @@ jsonData["temperature"] = Temperature;
 jsonData["humidity"] = Humidity;
 jsonData["aqi"] = airQualityIndex;
 jsonData["hi"] = hic;
+jsonData["alt"] = alt;
+jsonData["pres"] = pres;
 jsonData["raining"] = checkForRain() ? "Yes" : "No";
 jsonData["wifi_strength"] = rssi;
 
