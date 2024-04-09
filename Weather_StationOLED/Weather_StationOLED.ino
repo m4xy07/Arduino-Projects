@@ -24,14 +24,14 @@
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+#define OLED_RESET     -1 
+#define SCREEN_ADDRESS 0x3C 
 
 //for bme280
-#define CHIP_SELECT_PIN 6
-#define MOSI_PIN 5
-#define MISO_PIN 7
-#define SCK_PIN  8
+#define CHIP_SELECT_PIN 6 //CSB
+#define MOSI_PIN 5 //SDA
+#define MISO_PIN 7 //SD0
+#define SCK_PIN  8 //SCL
 BME280SpiSw::Settings settings(CHIP_SELECT_PIN, MOSI_PIN, MISO_PIN, SCK_PIN);
 BME280SpiSw bme(settings);
 
@@ -65,16 +65,6 @@ const char* pass = SECRET_PASS;
 const char* secret = SHARED_SECRET;
 const char* host = IPadd; 
 const int port = 3000;
-
-#define BACKGROUND_COLOR  0x000000  // Black
-#define TEXT_COLOR        0xFFFFFF  // White
-#define HIGHLIGHT_COLOR   0x00FFFF  // Cyan
-#define RAIN_COLOR        0x0000FF  // Blue
-#define HEAT_INDEX_COLOR  0xFFA500  // Orange
-#define GOOD_COLOR  0x00FF00  // Green
-#define MODERATE_COLOR 0xFFA500  // Orange
-#define POOR_COLOR   0xFF0000  // Red
-#define TEXT_INTERESAR_COLOR 0x0000FF // Blue
 
 File myFile;
 
@@ -328,7 +318,7 @@ void printWifiStatus() {
   Serial.print("IP Address: ");
   Serial.println(ip);
 
-  //signal strength:
+  //signal strength: 
   rssi = WiFi.RSSI();
   Serial.print("signal strength (RSSI):");
   Serial.print(rssi);
@@ -360,9 +350,6 @@ void connectToWiFi(){
 
 bool checkForRain() {
   rainSensorValue = digitalRead(rainpin);
-  //rainSensorValue = analogRead(rainpin);
-  //int rainThreshold = 500;
-  //return rainSensorValue > rainThreshold;
   if(rainSensorValue < 1)
   {
   return 1;
@@ -422,7 +409,7 @@ void displaySensorData() {
   // Display heat index
   display.print("Heat Index:");
   display.print(hic);
-  display.print((char)247); // Degree symbol
+  display.print((char)247);
   display.println("C");
 
 
@@ -443,10 +430,12 @@ void displaySensorData() {
   display.print("Raining:");
   display.println(checkForRain() ? "Yes" : "No");
 
+  //Display Altitude
   display.print("Altitude: ");
   display.print(alt);
   display.println("m");
 
+ //Display Atmospheric Pressure
   display.print("Pressure: ");
   display.print(presi);
   display.println("hPa");
