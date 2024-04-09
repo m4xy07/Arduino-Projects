@@ -61,7 +61,7 @@ float pres;
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
 const char* secret = SHARED_SECRET;
-const char* host = "159.65.154.81"; 
+const char* host = IPadd; 
 const int port = 3000;
 
 #define BACKGROUND_COLOR  0x000000  // Black
