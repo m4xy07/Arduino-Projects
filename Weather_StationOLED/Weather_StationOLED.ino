@@ -58,6 +58,7 @@ float hic;
 int rainSensorValue;
 float pres;
 float alt;
+float presi;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
@@ -540,7 +541,7 @@ void loop() {
    BME280::TempUnit tempUnit(BME280::TempUnit_Celsius);
    BME280::PresUnit presUnit(BME280::PresUnit_Pa);
    bme.read(pres, temp, hum, tempUnit, presUnit);
-  float presi = pres/100;
+  presi = pres/100; //Display pressure in hPa
   alt = 44330 * ( 1 - pow(presi/1013.25, 1/5.255) );
 
   Humidity = dht.readHumidity();
