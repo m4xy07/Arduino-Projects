@@ -57,6 +57,7 @@ float Temp_Fahrenheit;
 float hic;
 int rainSensorValue;
 float pres;
+float alt;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
@@ -441,6 +442,14 @@ void displaySensorData() {
   display.print("Raining:");
   display.println(checkForRain() ? "Yes" : "No");
 
+  display.print("Altitude: ");
+  display.print(alt);
+  display.println("m");
+
+  display.print("Pressure: ");
+  display.print(pres);
+  display.println("hPa");
+
   display.display();
 }
 
@@ -531,8 +540,8 @@ void loop() {
    BME280::TempUnit tempUnit(BME280::TempUnit_Celsius);
    BME280::PresUnit presUnit(BME280::PresUnit_Pa);
    bme.read(pres, temp, hum, tempUnit, presUnit);
-   float presi = pres/100;
-  float alt = 44330 * ( 1 - pow(presi/1013.25, 1/5.255) );
+  float presi = pres/100;
+  alt = 44330 * ( 1 - pow(presi/1013.25, 1/5.255) );
 
   Humidity = dht.readHumidity();
   Temperature = dht.readTemperature();
@@ -541,14 +550,6 @@ void loop() {
 
   if (isnan(Humidity) || isnan(Temperature) || isnan(Temp_Fahrenheit)) {
     Serial.println(F("Warning: Unable to find DHT Sensor. Check Connection!"));
-  /*digitalWrite(buzzerpin, HIGH);
-  delay(100);
-  digitalWrite(buzzerpin, LOW);
-  delay(1000);
-  tone(buzzerpin, 1000);
-  delay(500);       
-  noTone(buzzerpin);     
-  delay(3000);*/
     return;
   }
 
@@ -579,6 +580,7 @@ void loop() {
   Serial.println(F(" Rain ")); */
 
   displaySensorData();
+
   RTCTime currentTime;
   RTC.getTime(currentTime);
   myFile = SD.open("Logging.txt", FILE_WRITE);
@@ -604,6 +606,10 @@ void loop() {
     myFile.print(airQualityIndex);
     myFile.print(", HI: ");
     myFile.print(hic);
+    myFile.print(", ALT: ");
+    myFile.print(alt);
+    myFile.print(", Pressure: ");
+    myFile.print(pres);
     myFile.print(", Raining: ");
     myFile.print(checkForRain() ? "Yes" : "No");
     myFile.print(", WiFI Strength (dBm): ");
