@@ -448,7 +448,7 @@ void displaySensorData() {
   display.println("m");
 
   display.print("Pressure: ");
-  display.print(pres);
+  display.print(presi);
   display.println("hPa");
 
   display.display();
