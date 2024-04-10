@@ -60,8 +60,8 @@ float pres;
 float alt;
 float presi;
 
-const char* ssid = SECRET_SSID3;
-const char* pass = SECRET_PASS3;
+const char* ssid = SECRET_SSID;
+const char* pass = SECRET_PASS;
 const char* secret = SHARED_SECRET;
 const char* host = IPadd; 
 const int port = 3000;
@@ -70,7 +70,7 @@ File myFile;
 
 ArduinoLEDMatrix matrix;
 
-const uint32_t frames[][4] = {
+const uint32_t frames[][4] = { 
   { 0xe0000000,
     0x0,
     0x0,
