@@ -60,8 +60,8 @@ float pres;
 float alt;
 float presi;
 
-const char* ssid = SECRET_SSID;
-const char* pass = SECRET_PASS;
+const char* ssid = SECRET_SSID3;
+const char* pass = SECRET_PASS3;
 const char* secret = SHARED_SECRET;
 const char* host = IPadd; 
 const int port = 3000;
