@@ -21,7 +21,9 @@
 #include <HttpClient.h>
 #include <b64.h>
 #include <BME280SpiSw.h>
+#include "cropsdb.h"
 #include "frames.h"
+#include <algorithm>
 
 #define DHTTYPE DHT22
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -39,8 +41,10 @@ BME280SpiSw bme(settings);
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-unsigned long delayTime = 60000;
+unsigned long delayTime = 30000;
 auto timeZoneOffsetHours = 5.5;
+
+#define SOIL_MOISTURE_PIN A1
 
 int buzzerpin = 8;
 int DHTPin = 2;
@@ -61,6 +65,11 @@ int rainSensorValue;
 float pres;
 float alt;
 float presi;
+int soilMoisture;
+float moisturepercentage;
+bool match_found = false;
+String best_crop;
+float soil_moisture, min_temp, max_temp, min_humidity, max_humidity, min_soil_moisture, max_soil_moisture;
 
 const char* ssid = SECRET_SSID;
 const char* pass = SECRET_PASS;
@@ -71,6 +80,7 @@ const int port = 3000;
 File myFile;
 
 ArduinoLEDMatrix matrix;
+
 
 int wifiStatus = WL_IDLE_STATUS;
 WiFiUDP Udp; // A UDP instance to let us send and receive packets over UDP
@@ -133,6 +143,16 @@ int readAirQualityIndex() {
   int sensorDataA = analogRead(sensorPinA);
   digitalWrite(13, sensorDataA > 400 ? HIGH : LOW);
   return sensorDataA;
+}
+
+int soilMoistureValue()
+{
+  soilMoisture = analogRead(SOIL_MOISTURE_PIN);
+  Serial.print("Soil Moisture: ");
+  Serial.println(soilMoisture);
+  moisturepercentage = ( 100 - ( (soilMoisture/1023.00) * 100 ) );
+  Serial.print("Moisture Percentage = ");
+  Serial.println(moisturepercentage);
 }
 
 // Function to display air quality information
@@ -262,6 +282,15 @@ switch(bme.chipModel())
   RTC.getTime(currentTime); 
   Serial.println("The RTC was just set to: " + String(currentTime));
 
+ /*  // Parse JSON database
+  DynamicJsonDocument doc(8192);
+  DeserializationError error = deserializeJson(doc, json);
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  } */
+
   display.display();
   delay(2000); 
 
@@ -320,6 +349,9 @@ void loop() {
   Serial.print(hic);
   Serial.println(F("°C "));
 
+  soilMoistureValue();
+
+
   int airQualityIndex = readAirQualityIndex();
   displayAirQuality(airQualityIndex);
 
@@ -376,11 +408,77 @@ void loop() {
   } else {
     Serial.println("Error opening file");
   }
-
-RTC.getTime(currentTime);
- 
 WiFiClient client;
 
+int arrmonth = Month2int(currentTime.getMonth());
+char month[10]; // Allocate enough space for the month name
+char* monthNames[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+char* monthName = monthNames[arrmonth-1]; //-1 cuz array starts from 0
+
+Serial.println(monthName);
+
+//strcpy(month, currentTime.getMonth());
+// Parse JSON database
+    DynamicJsonDocument doc(6144);
+  DeserializationError error = deserializeJson(doc, json);
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  // Iterate through JSON database
+JsonArray cropsArray = doc["crops"];
+for (JsonObject crop : cropsArray) {
+    min_temp = crop["temperature"]["min"];
+    max_temp = crop["temperature"]["max"];
+    min_humidity = crop["humidity"]["min"];
+    max_humidity = crop["humidity"]["max"];
+    min_soil_moisture = crop["soil_moisture"]["min"];
+    max_soil_moisture = crop["soil_moisture"]["max"];
+
+    // Check if temperature is within range
+    if (Temperature >= min_temp && Temperature <= max_temp) {
+      // Check if current month is supported
+      /*  JsonObject months_supported_ = crop["months_supported"];
+
+      if (months_supported_.containsKey(monthName)) {*/
+        JsonArray months_supported = crop["months_supported"];
+bool month_found = false;
+for (JsonVariant month : months_supported) {
+  if (strcmp(month.as<const char*>(), monthName) == 0) {
+    month_found = true;
+    break;
+  }
+}
+
+//if (months_supported.contains(monthName)) {
+  //if (std::find(months_supported.begin(), months_supported.end(), monthName) != months_supported.end()) {
+    if (month_found) {
+        //Serial.println("Month is supported \n");
+        // Check if humidity is within range
+        if (Humidity >= min_humidity && Humidity <= max_humidity) {
+          //Serial.println("Humidity is supported \n");
+          // Check if soil moisture is within range
+          if (moisturepercentage >= min_soil_moisture && moisturepercentage <= max_soil_moisture) {
+           // Serial.println("Moisture is supported \n");
+            // If all conditions are met, set match_found to true and store the crop name
+            match_found = true;
+            best_crop = crop["name"].as<String>();
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  // Print the best crop for current conditions
+  if (match_found) {
+    Serial.println("Best crop for current conditions: " + best_crop);
+  } else {
+    Serial.println("No suitable crop found for current conditions.");
+  }
+ 
 
 if (client.connect(host, port)) {
     Serial.println("Connected to server");
@@ -435,5 +533,4 @@ Serial.println(measureJson(jsonData));
 
   delay(delayTime);
 }
-
 

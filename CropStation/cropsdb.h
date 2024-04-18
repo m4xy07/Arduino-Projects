@@ -479,7 +479,7 @@ const char json[] PROGMEM = R"JSON(
       ]
     },
     {
-      "name": "Test Crop #1",
+      "name": "Hooga Booga Yaha Kuch Nahi Ooga",
       "temperature": {
         "min": 15,
         "max": 40
@@ -490,7 +490,7 @@ const char json[] PROGMEM = R"JSON(
       },
       "soil_moisture": {
         "min": 1,
-        "max": 50
+        "max": 6
       },
       "months_supported": [
         "April",
@@ -511,8 +511,8 @@ const char json[] PROGMEM = R"JSON(
         "max": 86
       },
       "soil_moisture": {
-        "min": 15,
-        "max": 50
+        "min": 6,
+        "max": 80
       },
       "months_supported": [
         "April",
