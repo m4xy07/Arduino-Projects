@@ -38,8 +38,10 @@ BME280SpiSw bme(settings);
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-unsigned long delayTime = 60000;
+unsigned long delayTime = 3000;
 auto timeZoneOffsetHours = 5.5;
+
+#define SOIL_MOISTURE_PIN A1
 
 int buzzerpin = 8;
 int DHTPin = 2;
@@ -60,9 +62,11 @@ int rainSensorValue;
 float pres;
 float alt;
 float presi;
+int soilMoisture;
+float moisturepercentage;
 
-const char* ssid = SECRET_SSID;
-const char* pass = SECRET_PASS;
+const char* ssid = SECRET_SSID2;
+const char* pass = SECRET_PASS2;
 const char* secret = SHARED_SECRET;
 const char* host = IPadd; 
 const int port = 3000;
@@ -369,6 +373,17 @@ int readAirQualityIndex() {
   return sensorDataA;
 }
 
+int soilMoistureValue()
+{
+  soilMoisture = analogRead(SOIL_MOISTURE_PIN);
+ // soilMoisture = map(soilMoisture, 0, 1023, 0, 100);
+  Serial.print("Soil Moisture: ");
+  Serial.println(soilMoisture);
+  moisturepercentage = ( 100 - ( (soilMoisture/1023.00) * 100 ) );
+  Serial.print("Moisture Percentage = ");
+  Serial.println(moisturepercentage);
+}
+
 // Function to display air quality information
 void displayAirQuality(int airQualityIndex) {
   Serial.print(F("Air Quality Index: "));
@@ -553,6 +568,9 @@ void loop() {
   Serial.print(F("°F Heat index: "));
   Serial.print(hic);
   Serial.println(F("°C "));
+
+  soilMoistureValue();
+
 
   int airQualityIndex = readAirQualityIndex();
   displayAirQuality(airQualityIndex);
